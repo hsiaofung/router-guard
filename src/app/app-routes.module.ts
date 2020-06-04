@@ -8,6 +8,7 @@ import { RegisterComponent } from "./user/register/register.component";
 import { StockDetailsComponent } from "./stock/stock-details/stock-details.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { CreateStockDeactivateGuard } from "./guards/create-stock-deactivate.guard";
+import { StockLoadResolverService } from "./services/stock-load-resolver.service";
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -28,6 +29,8 @@ const appRoutes: Routes = [
     path: "stock/:code",
     component: StockDetailsComponent,
     canActivate: [AuthGuard], // 將AuthGuard 加入StockDetailsComponent
+    resolve: { stock: StockLoadResolverService }, // 將resolver加入股票細節路徑 : 使用StockLoadResolverService取得stock，
+    // 確保預先取得特定代號的股票。
   },
   { path: "**", redirectTo: "/register" },
 ];

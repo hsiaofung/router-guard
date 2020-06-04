@@ -17,6 +17,7 @@ import { StockAppInterceptor } from "./services/stock-app.interceptor";
 import { AppRoutesModule } from "./app-routes.module";
 import { AuthGuard } from "./guards/auth.guard";
 import { CreateStockDeactivateGuard } from "./guards/create-stock-deactivate.guard";
+import { StockLoadResolverService } from "./services/stock-load-resolver.service";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CreateStockDeactivateGuard } from "./guards/create-stock-deactivate.gua
     UserStoreService,
     AuthGuard, // 將AuthGuard加入providers清單。
     CreateStockDeactivateGuard,
+    StockLoadResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: StockAppInterceptor,
